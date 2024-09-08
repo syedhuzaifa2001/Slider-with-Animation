@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider with Dynamic Background Circles</title>
+    <!-- Link Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .carousel-inner {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+      
+
+      #img-1,
+      #img-2,
+      #img-3 {
+        width: 250px;
+        height: 450px;
+      }
+      #img-1 {
+        position: relative;
+        right: -98px;
+        top: -21px;
+        z-index: -1;
+      }
+
+      #img-3 {
+        position: relative;
+        left: -98px;
+        top: -21px;
+        z-index: -1;
+      }
+
+      .background-circles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: black;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.circle.visible {
+  opacity: 1;
+}
+
+      .circle.transition {
+        transition: transform 1.5s ease, background-color 1s ease;
+      }
+      .carousel-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+
+        width: 100%;
+      }
+      .carousel-images {
+        display: flex;
+      }
+
+      .carousel_item {
+        margin: 0 ;
+      }
+      #img-3 {
+        transition: transform 1s ease-in;
+        animation: rotateBackAndForth 2s infinite;
+      }
+
+      @keyframes rotateBackAndForth {
+        0% {
+          transform: rotate(0deg) translateY(0);
+        }
+        100% {
+          transform: rotate(17deg) translateY(50px);
+        }
+      }
+      #img-1 {
+        transition: transform 1s ease-in;
+        animation: rotateBackAndForth1 2s infinite;
+      }
+
+      @keyframes rotateBackAndForth1 {
+        0% {
+          transform: rotate(0deg) translateY(0);
+        }
+        100% {
+          transform: rotate(-17deg) translateY(50px);
+        }
+      }
+      #img-2 {
+        transition: transform 1s ease-in;
+        animation: rotateBackAndForth2 2s infinite;
+      }
+
+      /* Keyframes for rotation */
+      @keyframes rotateBackAndForth2 {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(50px);
+        }
+      }
+      .carousel-text p {
+        font-size: 18px;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+      }
+      .carousel-text {
+        padding: 10px 158px 10px 0px;
+      }
+      @font-face {
+        font-family: "GrifterBold";
+        src: url("/grifterbold.otf") format("opentype");
+      }
+      .carousel-text h6 {
+        color: #f03621;
+        font-family: "GrifterBold", sans-serif;
+        font-size: 35px;
+        font-weight: bold;
+      }
+      #img-4,
+      #img-5,
+      #img-6 {
+        width: 250px;
+        height: 450px;
+      }
+      #img-6 {
+        position: relative;
+        transform: skew(20deg, 21deg);
+        height: 389px;
+        top: 42px;
+        width: 180px;
+      }
+      #img-5 {
+        position: relative;
+        z-index: -1;
+        left: -50px;
+      }
+      #img-4 {
+        position: relative;
+        height: 481px;
+        top: -12px;
+        left: 17px;
+      }
+      .img-1 {
+        position: relative;
+        z-index: 111111111;
+      }
+      #img-7 {
+        position: absolute;
+        z-index: 1;
+        width: 238px;
+        left: 15px;
+        transition: transform 2s ease-in-out;
+        animation: ScaleBigSmall 2s infinite alternate;
+      }
+      @keyframes ScaleBigSmall {
+        0% {
+          transform: scale(0.9);
+        }
+        100% {
+          transform: scale(1.2);
+        }
+      }
+      .img2 {
+        position: relative;
+      }
+      #img-8 {
+        position: absolute;
+        z-index: 1;
+        width: 183px;
+        top: 25px;
+        left: -12px;
+        transition: transform 2s ease-in-out;
+        animation: ScaleBigSmall1 2s infinite alternate;
+      }
+
+      @keyframes ScaleBigSmall1 {
+        0% {
+          transform: scale(0.9);
+        }
+        100% {
+          transform: scale(1.1);
+        }
+      }
+      .img3 {
+        position: relative;
+      }
+      #img-9 {
+        position: absolute;
+        z-index: 1;
+        width: 255px;
+        height: 201px;
+        top: 145px;
+        left: -31px;
+        transition: transform 2s ease-in-out;
+        animation: ScaleBigSmall2 2s infinite alternate;
+      }
+
+      @keyframes ScaleBigSmall2 {
+        0% {
+          transform: scale(0.9);
+        }
+        100% {
+          transform: scale(1.1);
+        }
+      }
+      .carousel-text1 {
+        padding: 10px 158px 10px 56px;
+      }
+     
+    </style>
+  </head>
+  <body>
+    <div
+      id="carouselExampleControls"
+      data-bs-touch="true"
+      class="carousel slide"
+    >
+      <div class="background-circles" id="circleBackground"></div>
+
+      <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item carousel_item active">
+          <div class="carousel-container">
+            <div class="carousel-images">
+              <img id="img-1" src="Layer 3.png" alt="" />
+              <img id="img-2" src="Layer 2.png" alt="" />
+              <img id="img-3" src="Layer 4.png" alt="" />
+            </div>
+
+            <div class="carousel-text">
+              <h6>FashionWays: Modern Shopping Experience</h6>
+              <p>
+                GoVirtual, developed with React Native for seamless
+                cross-platform functionality, Three.js for immersive 3D
+                graphics, and Figma for intuitive design, offers an exceptional
+                movie-watching experience. Powered by AWS for scalable cloud
+                hosting and video processing, and Firebase for real-time data
+                sync and secure authentication, GoVirtual delivers high-quality
+                IMAX and 3D movies right to your device.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-item carousel_item">
+          <div class="carousel-container">
+            <div class="carousel-images">
+              <div class="img-1">
+                <img id="img-7" src="dish-1-1.png" alt="" />
+                <img id="img-4" src="full.png" alt="" />
+              </div>
+              <div class="img2">
+                <img id="img-8" src="Dish.png" alt="" />
+                <img id="img-5" src="full.png" alt="" />
+              </div>
+              <div class="img3">
+                <img id="img-9" src="Staks-1.png" alt="" />
+                <img id="img-6" src="front.png" alt="" />
+              </div>
+            </div>
+
+            <div class="carousel-text carousel-text1">
+              <h6 style="color: #f8b609">
+                InstantEat: Your Ultimate Online Food Shopping App
+              </h6>
+              <p>
+                We developed InstantEat, an online food shopping app available
+                on both iOS and Android, to simplify your grocery and meal
+                planning needs. Leveraging React Native for cross-platform
+                compatibility, Firebase for real-time updates and secure
+                authentication, and AWS for scalable cloud hosting, InstantEat
+                ensures a seamless and efficient shopping experience. Browse a
+                wide range of fresh produce, daily essentials, and ready-to-eat
+                meals, all from the comfort of your home with InstantEat.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <button
+        class="carousel-control-prev"
+        type="button"
+        
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    
+    <script>
+      const circleBackground = document.getElementById("circleBackground");
+    
+      // Define circles for each slide with unique positions
+      const slideCircles = {
+        0: [
+          { top: '-70%', left: '10%', color: '#1ca19f' },
+          { top: '40%', right: '-20%', color: '#7e1e13' },
+          { bottom: '-50%', left: '-20%', color: '#093c37' }
+        ],
+        1: [
+          { top: '-70%', right: '15%', color: '#b0810a' },
+          { bottom: '-70%', left: '-5%', color: '#16400a' },
+          { top: '30%', left: '65%', color: 'black' }
+        ]
+      };
+    
+      // Function to clear existing circles with transition
+      function clearCircles() {
+        const circles = circleBackground.querySelectorAll('.circle');
+        circles.forEach(circle => {
+          circle.classList.remove('visible');
+          setTimeout(() => {
+            circleBackground.removeChild(circle);
+          }, 1500); // Match this with the transition duration
+        });
+      }
+    
+      // Function to generate circles based on the slide index
+      function generateCircles(slideIndex) {
+        clearCircles(); // Clear existing circles
+    
+        slideCircles[slideIndex].forEach((circleData) => {
+          const circle = document.createElement("div");
+          circle.classList.add("circle");
+          circle.style.width = `700px`;
+          circle.style.height = `700px`;
+          circle.style.backgroundColor = circleData.color;
+          circle.style.position = 'absolute';
+          circle.style.filter = 'blur(100px)';
+    
+          // Set initial position
+          circle.style.transform = 'translate(-50%, -50%)'; // Center for now, will adjust later
+    
+          // Append to background
+          circleBackground.appendChild(circle);
+    
+          // Force a reflow to apply transition
+          void circle.offsetWidth;
+    
+          // Set final position
+          if (circleData.top) circle.style.top = circleData.top;
+          if (circleData.bottom) circle.style.bottom = circleData.bottom;
+          if (circleData.left) circle.style.left = circleData.left;
+          if (circleData.right) circle.style.right = circleData.right;
+    
+          // Center the circle by translating it
+          circle.style.transform = 'translate(0, 0)';
+    
+          // Add visible class to trigger transition
+          circle.classList.add('visible');
+        });
+      }
+    
+      // Generate circles for the initial slide
+      generateCircles(0);
+    
+      // Update circles when the slide changes
+      document.querySelectorAll(".carousel-control-prev, .carousel-control-next").forEach((control) => {
+        control.addEventListener("click", () => {
+          const activeSlideIndex = Array.from(document.querySelectorAll(".carousel-item")).findIndex(item => item.classList.contains("active"));
+          generateCircles(activeSlideIndex);
+        });
+      });
+    
+      // Additional code to handle slide change automatically (optional)
+      document.querySelector('#carouselExampleControls').addEventListener('slid.bs.carousel', () => {
+        const activeSlideIndex = Array.from(document.querySelectorAll(".carousel-item")).findIndex(item => item.classList.contains("active"));
+        generateCircles(activeSlideIndex);
+      });
+    </script>
+    
+  </body>
+
+</html>
+
